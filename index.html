@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Shippas — progressi</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="theme.js"></script>
+</head>
+<body>
+  <header class="header">
+    <h1>Shippas — progressi</h1>
+    <p id="updated">Dati da MyFitnessPal e Hevy, aggiornati ogni giorno.</p>
+  </header>
+
+  <main>
+    <form id="login" hidden>
+      <p>I dati sono cifrati. Inserisci la password che ti ha dato Tommaso.</p>
+      <label for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" required />
+      <button type="submit">Apri</button>
+      <p id="login-error" class="bad" hidden>Password sbagliata.</p>
+    </form>
+
+    <p id="loading">Caricamento…</p>
+
+    <div id="app" hidden>
+      <div id="alerts"></div>
+
+      <section aria-labelledby="h-summary">
+        <h2 id="h-summary">Ultimi 7 giorni</h2>
+        <div id="tiles" class="tiles"></div>
+      </section>
+
+      <section aria-labelledby="h-weight">
+        <h2 id="h-weight">Peso</h2>
+        <div class="range" role="group" aria-label="Intervallo">
+          <button type="button" data-weeks="4">4 settimane</button>
+          <button type="button" data-weeks="13">3 mesi</button>
+          <button type="button" data-weeks="0">Tutto</button>
+        </div>
+        <p class="note">Punti = pesata del giorno · linea = media lunedì-domenica. Il peso del singolo giorno oscilla di ±1 kg (acqua, carboidrati, sale): conta la media.</p>
+        <div id="chart-weight" class="chart"></div>
+      </section>
+
+      <section aria-labelledby="h-kcal">
+        <h2 id="h-kcal">Calorie</h2>
+        <p class="note" id="phase"></p>
+        <p class="note">
+          <span class="key key-on"></span> giorno con allenamento
+          <span class="key key-off"></span> giorno senza
+          <span class="key key-goal"></span> obiettivo del giorno.
+          Barre sbiadite = giorno loggato a metà (&lt;1000 kcal).
+        </p>
+        <div id="chart-kcal" class="chart"></div>
+      </section>
+
+      <section aria-labelledby="h-weeks">
+        <h2 id="h-weeks">Settimane</h2>
+        <div class="table-wrap"><table id="weeks"></table></div>
+      </section>
+
+      <section aria-labelledby="h-prog">
+        <h2 id="h-prog">Progressione</h2>
+        <p class="note" id="prog-note"></p>
+        <div class="table-wrap"><table id="prog"></table></div>
+      </section>
+
+      <section aria-labelledby="h-last">
+        <h2 id="h-last">Ultimi allenamenti</h2>
+        <div id="last"></div>
+      </section>
+    </div>
+  </main>
+
+  <div id="tooltip" class="tooltip" hidden></div>
+
+  <footer class="footer">
+    <p>Pagina privata: non indicizzata, dati cifrati nel repository.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

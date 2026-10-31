@@ -1,0 +1,137 @@
+/* Shippas — progressi. Same plain look as tommanmaz.github.io: Georgia on
+   white, navy links, flat bordered tables; no gradients, shadows, rounded
+   corners or animations. Colors only through the tokens below. */
+
+:root {
+  --text: #111111;
+  --text-muted: #555555;
+  --bg: #ffffff;
+  --bg-soft: #fafafa;
+  --bg-stripe: #f6f6f6;
+  --link: #0b3d91;
+  --rule: #bbbbbb;
+  --rule-soft: #dddddd;
+  --ok: #1a7f37;
+  --warn: #8a6d00;
+  --warn-bg: #fbf6e3;
+  --bad: #b00020;
+  --control-bg: #eeeeee;
+  --control-hover: #e0e0e0;
+  --control-border: #888888;
+
+  /* charts: one hue, two steps */
+  --series: #0b3d91;
+  --series-soft: #8eaee0;
+  --grid: #e6e6e6;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --text: #e4e4e4; --text-muted: #a3a3a3;
+    --bg: #121212; --bg-soft: #1a1a1a; --bg-stripe: #181818;
+    --link: #8fb3ff; --rule: #4a4a4a; --rule-soft: #333333;
+    --ok: #6fcf87; --warn: #e3c55a; --warn-bg: #2d2712; --bad: #ff7a8a;
+    --control-bg: #262626; --control-hover: #333333; --control-border: #6a6a6a;
+    --series: #8fb3ff; --series-soft: #3c5a8f; --grid: #2a2a2a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --text: #e4e4e4; --text-muted: #a3a3a3;
+  --bg: #121212; --bg-soft: #1a1a1a; --bg-stripe: #181818;
+  --link: #8fb3ff; --rule: #4a4a4a; --rule-soft: #333333;
+  --ok: #6fcf87; --warn: #e3c55a; --warn-bg: #2d2712; --bad: #ff7a8a;
+  --control-bg: #262626; --control-hover: #333333; --control-border: #6a6a6a;
+  --series: #8fb3ff; --series-soft: #3c5a8f; --grid: #2a2a2a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.5;
+}
+a { color: var(--link); }
+
+.header, main, .footer { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+.header { position: relative; padding-top: 24px; border-bottom: 1px solid var(--rule); }
+.header h1 { margin: 0; font-size: 1.8em; font-weight: normal; }
+.header p { margin: 4px 0 12px; color: var(--text-muted); }
+.footer { margin-top: 48px; padding-top: 12px; padding-bottom: 24px; border-top: 1px solid var(--rule);
+  color: var(--text-muted); font-size: 0.85em; }
+
+h2 { font-weight: normal; font-size: 1.35em; margin: 36px 0 8px; border-bottom: 1px solid var(--rule-soft); }
+.note { color: var(--text-muted); font-size: 0.9em; margin: 4px 0 8px; }
+.bad { color: var(--bad); }
+.ok { color: var(--ok); }
+.muted { color: var(--text-muted); }
+
+button, input {
+  font: inherit;
+  color: var(--text);
+  background: var(--control-bg);
+  border: 1px solid var(--control-border);
+  padding: 4px 10px;
+}
+input { background: var(--bg); }
+button { cursor: pointer; }
+button:hover { background: var(--control-hover); }
+button[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+.theme-toggle { position: absolute; right: 16px; top: 24px; font-size: 0.85em; }
+
+#login { margin-top: 24px; }
+#login input { margin: 0 8px; }
+
+.alert { border: 1px solid var(--warn); background: var(--warn-bg); color: var(--text); padding: 8px 12px; margin: 16px 0 0; }
+
+/* Summary tiles: plain bordered boxes */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.tile { border: 1px solid var(--rule); padding: 8px 12px; }
+.tile .label { color: var(--text-muted); font-size: 0.85em; }
+.tile .value { font-size: 1.6em; }
+.tile .sub { font-size: 0.85em; color: var(--text-muted); }
+
+.range { margin: 4px 0; }
+.range button { font-size: 0.85em; }
+
+.chart { position: relative; width: 100%; }
+.chart svg { display: block; width: 100%; font-family: Georgia, serif; }
+.chart text { fill: var(--text-muted); font-size: 12px; }
+
+.key { display: inline-block; width: 12px; height: 12px; vertical-align: -1px; margin-left: 8px; }
+.key-on { background: var(--series); }
+.key-off { background: var(--series-soft); }
+.key-goal { height: 0; border-top: 2px dashed var(--text-muted); vertical-align: 3px; }
+
+.tooltip {
+  position: fixed; z-index: 10; pointer-events: none;
+  background: var(--bg); color: var(--text);
+  border: 1px solid var(--control-border);
+  padding: 4px 8px; font-size: 0.85em; line-height: 1.4; max-width: 260px;
+}
+
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9em; }
+th, td { border: 1px solid var(--rule); padding: 4px 8px; text-align: left; vertical-align: top; }
+th { background: var(--control-bg); font-weight: normal; }
+tbody tr:nth-child(even) { background: var(--bg-stripe); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.spark { padding: 2px 8px; }
+
+details { border: 1px solid var(--rule); margin: 0 0 8px; }
+details > summary { padding: 6px 10px; cursor: pointer; background: var(--bg-soft); }
+details[open] > summary { border-bottom: 1px solid var(--rule); }
+details table { font-size: 0.85em; }
+details table td, details table th { border-left: 0; border-right: 0; }
+details .ex-note { color: var(--text-muted); font-style: italic; }
+
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .header h1 { font-size: 1.4em; padding-right: 64px; }
+  .tile .value { font-size: 1.3em; }
+}
